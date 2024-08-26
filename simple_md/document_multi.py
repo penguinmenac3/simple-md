@@ -111,13 +111,13 @@ class MultiDocument(Document):
             plt.close()
         self.add_image(np.array(img_arr), embed=embed, style=style, new_line=new_line, flush=flush)
 
-    def add_video(self, images: List[str], fps: float, style: str = "", new_line=True, flush: bool | None = None) -> None:
+    def add_video(self, images: List[str], fps: float, style: str = "", new_line=True, autoplay: bool = True, flush: bool | None = None) -> None:
         """
         Add a numpy image to the document.
         """
         assert len(images) > 2
-        self.md.add_video(images[:2], fps, style, new_line, flush)
-        self.html.add_video(images, fps, style, new_line, flush)
+        self.md.add_video(images[:2], fps, style, new_line, autoplay, flush)
+        self.html.add_video(images, fps, style, new_line, autoplay, flush)
 
     def add_table(self, header: list[Any], body: list[list[Any]], flush: bool | None = None) -> None:
         self.md.add_table(header, body, flush)

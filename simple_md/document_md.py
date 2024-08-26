@@ -130,7 +130,7 @@ class MDDocument(Document):
         self._maybe_flush(flush)
 
 
-    def add_video(self, images: List[str], fps: float, style: str = "", new_line=True, flush: bool | None = None) -> None:
+    def add_video(self, images: List[str], fps: float, style: str = "", new_line=True, autoplay: bool = True, flush: bool | None = None) -> None:
         """
         Add a numpy image to the document.
         """
@@ -144,8 +144,9 @@ class MDDocument(Document):
             style = f" style='{style}'"
         add_line = [""] if new_line else []
         relative_path = path.split('/')[-1]
+        autoplay_str = "autoplay " if autoplay else ""
         self.linebuffer.extend([
-                f"<video class='image' {style} src='{relative_path}' controls autoplay loop muted></video>",
+                f"<video class='image' {style} src='{relative_path}' controls {autoplay_str}loop muted></video>",
             ] + add_line)
         self._maybe_flush(flush)
 

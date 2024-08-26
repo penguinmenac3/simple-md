@@ -132,7 +132,7 @@ class HTMLDocument(Document):
             self._content = f"{self._content}\n<BR>"
         self._maybe_flush(flush)
 
-    def add_video(self, images: List[str], fps: float, style: str = "", new_line=True, flush: bool | None = None) -> None:
+    def add_video(self, images: List[str], fps: float, style: str = "", new_line=True, autoplay: bool = True, flush: bool | None = None) -> None:
         """
         Add a numpy image to the html document.
         """
@@ -145,7 +145,8 @@ class HTMLDocument(Document):
         if style != "":
             style = f" style='{style}'"
         relative_path = path.split('/')[-1]
-        self._content = f"{self._content}\n<video {style} src='{relative_path}' controls autoplay loop muted></video>"
+        autoplay_str = "autoplay " if autoplay else ""
+        self._content = f"{self._content}\n<video {style} src='{relative_path}' controls {autoplay_str}loop muted></video>"
         if new_line:
             self._content = f"{self._content}\n<BR>"
         self._maybe_flush(flush)

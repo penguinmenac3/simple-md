@@ -215,7 +215,7 @@ class Document(object):
             plt.close()
         self.add_image(np.array(img_arr), embed=embed, style=style, new_line=new_line, flush=flush)
 
-    def add_video(self, images: List[str], fps: float, style: str = "", new_line=True, flush: bool | None = None) -> None:
+    def add_video(self, images: List[str], fps: float, style: str = "", new_line=True, autoplay: bool = True, flush: bool | None = None) -> None:
         """
         Add a numpy image to the document.
         """
